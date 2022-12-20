@@ -28,6 +28,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
+        [SerializeField] private AudioClip m_Coin;           // the sound played when character touches back on ground.
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -42,9 +43,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+        private AudioSource Sekkk;
 
         public GameObject wholeCanvas;
-        public int coinsCollect=0;
+        public static int coinsCollect=0;
 
         // Use this for initialization
         private void Start()
@@ -59,6 +61,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
             m_MouseLook.Init(transform, m_Camera.transform);
+            Sekkk = GameObject.Find("SEs").GetComponent<AudioSource>();
         }
 
 
@@ -269,8 +272,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 Destroy(other.gameObject);
                 coinsCollect++;
                 GameObject.Find("CoinCollected").GetComponent<Text>().text = "Coins: " + coinsCollect.ToString();
-                print("µÃ·Ö£¡");
-                this.GetComponent<AudioSource>().Play();
+                Sekkk.clip = m_Coin;
+                Sekkk.Play();
+                if(coinsCollect==20)
+                {
+                    GameObject.Find("Win").GetComponent<AudioSource>().Play();
+                }
             }
         }
     }

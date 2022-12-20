@@ -15,6 +15,9 @@ public class interactThings : MonoBehaviour
     public GameObject stupidLight;
     public float Timer=60;
 
+    private GameObject TIMEUP;
+    private GameObject Conclu;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,9 +48,14 @@ public class interactThings : MonoBehaviour
             GameObject.Find("TimeRemain").GetComponent<Text>().text = Timer.ToString();
         }
 
-        if(Timer<=0)
+        if(Timer<0)
         {
-            GameObject.Find("TimeUP").SetActive(true);
+            Timer = 0f;
+            GameObject.Find("TimeRemain").GetComponent<Text>().text = Timer.ToString();
+            TIMEUP.SetActive(true);
+            Conclu.SetActive(true);
+            GameObject.Find("Conclusion").GetComponent<Text>().text = "You collected " + GameObject.Find("CoinCollected").GetComponent<Text>().text;
+
         }
     }
 
@@ -76,6 +84,8 @@ public class interactThings : MonoBehaviour
         GameObject.Find("gate/dooropen").GetComponent<AudioSource>().Play();
         UIPrefab.SetActive(false);
         ALLUI.SetActive(true);
+        TIMEUP = GameObject.Find("TimeUP");
+        Conclu = GameObject.Find("Conclusion");
         GameObject.Find("TimeUP").SetActive(false);
         GameObject.Find("Conclusion").SetActive(false);
         GameObject.Find("TimeRemain").GetComponent<Text>().text = Timer.ToString();

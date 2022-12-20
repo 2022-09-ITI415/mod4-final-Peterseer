@@ -9,6 +9,7 @@ TagManager:
   - JumpPad
   - Boost
   - Coin
+  - Teleport
   layers:
   - Default
   - TransparentFX

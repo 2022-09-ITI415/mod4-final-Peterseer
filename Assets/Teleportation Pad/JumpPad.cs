@@ -61,7 +61,7 @@ public class JumpPad : MonoBehaviour
             GameObject player = other.gameObject;
             Rigidbody body = other.gameObject.GetComponent<Rigidbody>();
             Vector3 Vector3myVector3 = player.transform.position;
-            body.AddForce(body.transform.up*10f,  ForceMode.Impulse);
+            body.AddForce(body.transform.up*10,  ForceMode.Impulse);
         }
     }
 

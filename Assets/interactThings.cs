@@ -13,6 +13,7 @@ public class interactThings : MonoBehaviour
     public GameObject High;
     public GameObject ALLUI;
     public GameObject stupidLight;
+    public float Timer=60;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,19 @@ public class interactThings : MonoBehaviour
             {
                 startRun();
             }
+        }
+        if(ALLUI.activeSelf)
+        {
+            if (Timer > 0)
+            {
+                Timer -= Time.deltaTime;
+            }
+            GameObject.Find("TimeRemain").GetComponent<Text>().text = Timer.ToString();
+        }
+
+        if(Timer<=0)
+        {
+            GameObject.Find("TimeUP").SetActive(true);
         }
     }
 
@@ -62,6 +76,9 @@ public class interactThings : MonoBehaviour
         GameObject.Find("gate/dooropen").GetComponent<AudioSource>().Play();
         UIPrefab.SetActive(false);
         ALLUI.SetActive(true);
+        GameObject.Find("TimeUP").SetActive(false);
+        GameObject.Find("Conclusion").SetActive(false);
+        GameObject.Find("TimeRemain").GetComponent<Text>().text = Timer.ToString();
     }
 
 

@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace UnityStandardAssets.Characters.FirstPerson
@@ -41,6 +42,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+
+        public GameObject wholeCanvas;
+        public int coinsCollect=0;
 
         // Use this for initialization
         private void Start()
@@ -263,7 +267,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (other.gameObject.tag == "Coin")
             {
                 Destroy(other.gameObject);
+                coinsCollect++;
+                GameObject.Find("CoinCollected").GetComponent<Text>().text = "Coins: " + coinsCollect.ToString();
                 print("µÃ·Ö£¡");
+                this.GetComponent<AudioSource>().Play();
             }
         }
     }

@@ -11,6 +11,8 @@ public class interactThings : MonoBehaviour
     public GameObject UIPrefab;
     public bool isActive = true;
     public GameObject High;
+    public GameObject ALLUI;
+    public GameObject stupidLight;
 
     // Start is called before the first frame update
     void Start()
@@ -55,11 +57,11 @@ public class interactThings : MonoBehaviour
         print(this.name);
         this.GetComponent<Animator>().Play("Button_Down");
         this.transform.position = currentbuttonlocation;
-        //GameObject.Find("alarmlight").SetActive(true);
+        stupidLight.SetActive(true);
         GameObject.Find("gate").GetComponent<Animator>().Play("dooropen");
         GameObject.Find("gate/dooropen").GetComponent<AudioSource>().Play();
         UIPrefab.SetActive(false);
-
+        ALLUI.SetActive(true);
     }
 
 
